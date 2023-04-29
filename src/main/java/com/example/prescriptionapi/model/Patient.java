@@ -8,8 +8,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "patients")
+public class Patient {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,17 +28,17 @@ public class User {
 
 
     // One user can have multiple prescriptions
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "patient")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Prescription> prescriptionList;
 
-    public User() {
+    public Patient() {
     }
 
-    public User(Long id, String userName, String address, String phoneNumber, String emailAddress, String password) {
+    public Patient(Long id, String userName, String address, String phoneNumber, String emailAddress, String password) {
         this.id = id;
         this.userName = userName;
-        Address = address;
+        this.Address = address;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
         this.password = password;
@@ -102,7 +102,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Patient{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", Address='" + Address + '\'' +

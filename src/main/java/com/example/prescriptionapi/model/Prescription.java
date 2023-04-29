@@ -16,8 +16,6 @@ public class Prescription {
     @Column
     private String prescriber;
     @Column
-    private String patient;
-    @Column
     private String medication;
     @Column
     private Double dosage;
@@ -34,16 +32,15 @@ public class Prescription {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
 
     public Prescription() {
     }
 
-    public Prescription(Long id, String prescriber, String patient, String medication, Double dosage, Long quantity, String refills, LocalDate startDate, LocalDate endDate, boolean status) {
+    public Prescription(Long id, String prescriber, String medication, Double dosage, Long quantity, String refills, LocalDate startDate, LocalDate endDate, boolean status) {
         this.id = id;
         this.prescriber = prescriber;
-        this.patient = patient;
         this.medication = medication;
         this.dosage = dosage;
         this.quantity = quantity;
@@ -69,11 +66,11 @@ public class Prescription {
         this.prescriber = prescriber;
     }
 
-    public String getPatient() {
+    public Patient getPatient() {
         return patient;
     }
 
-    public void setPatient(String patient) {
+    public void setPatient(Patient patient) {
         this.patient = patient;
     }
 
@@ -133,20 +130,12 @@ public class Prescription {
         this.status = status;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     @Override
     public String toString() {
         return "Prescription{" +
                 "id=" + id +
                 ", prescriber='" + prescriber + '\'' +
-                ", patient='" + patient + '\'' +
+                ", patient='" + patient.getUserName() + '\'' +
                 ", medication='" + medication + '\'' +
                 ", dosage=" + dosage +
                 ", quantity=" + quantity +
@@ -154,7 +143,7 @@ public class Prescription {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", status=" + status +
-                ", user=" + user +
+                ", user=" + patient +
                 '}';
     }
 }

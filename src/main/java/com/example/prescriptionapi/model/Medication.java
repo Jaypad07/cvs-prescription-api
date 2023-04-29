@@ -23,6 +23,9 @@ public class Medication {
         @Column
         private String sideEffects;
 
+
+
+
         public Medication() {
         }
 
