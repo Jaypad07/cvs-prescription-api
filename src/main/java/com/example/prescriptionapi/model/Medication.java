@@ -24,6 +24,7 @@ public class Medication {
         @Column
         private String sideEffects;
 
+        //Many Medications can belong to Many Prescriptions
         @ManyToMany(mappedBy = "medication_List")
         private List<Prescription> prescriptionList;
 
@@ -95,6 +96,14 @@ public class Medication {
 
         public void setSideEffects(String sideEffects) {
                 this.sideEffects = sideEffects;
+        }
+
+        public List<Prescription> getPrescriptionList() {
+                return prescriptionList;
+        }
+
+        public void setPrescriptionList(List<Prescription> prescriptionList) {
+                this.prescriptionList = prescriptionList;
         }
 
         @Override

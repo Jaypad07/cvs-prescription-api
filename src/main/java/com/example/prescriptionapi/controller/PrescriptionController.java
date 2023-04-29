@@ -1,10 +1,10 @@
 package com.example.prescriptionapi.controller;
 
+import com.example.prescriptionapi.model.Patient;
 import com.example.prescriptionapi.model.Prescription;
 import com.example.prescriptionapi.repository.PrescriptionRepository;
 import com.example.prescriptionapi.service.PrescriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,9 +35,9 @@ public class PrescriptionController {
     }
 
     // http://localhost:9097/api/prescriptions
-    @PostMapping(path = "api/prescriptions")
-    public List<Prescription> createPrescriptions(@RequestBody Prescription prescriptionObject) {
-        Optional<Prescription> prescription = prescriptionRepository.findByPatientIdAndMedication()
-    }
+//    @PostMapping(path = "api/prescriptions")
+//    public List<Prescription> createPrescriptions(@RequestBody Prescription prescriptionObject) {
+////        Optional<Prescription> prescription = prescriptionRepository.findByPatientSocialSecurityAndMedication(, prescriptionObject.getMedication());
+//    }
 
 }

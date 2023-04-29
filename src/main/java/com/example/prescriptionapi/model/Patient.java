@@ -1,5 +1,6 @@
 package com.example.prescriptionapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -29,7 +30,7 @@ public class Patient {
     private String password;
 
 
-    // One user can have multiple prescriptions
+    // One user can have many prescriptions
     @OneToMany(mappedBy = "patient")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Prescription> prescriptionList;

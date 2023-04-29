@@ -31,11 +31,13 @@ public class Prescription {
     @Column
     private boolean status;
 
+    //Many prescriptions can belong to one patient
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
+    //Many Prescriptions can have Many Medications
     @ManyToMany
     @JoinTable(name = "prescription_medication", joinColumns = @JoinColumn(name = "prescription_id"), inverseJoinColumns = @JoinColumn(name = "medication_id"))
     private List<Medication> medicationList;
@@ -71,14 +73,6 @@ public class Prescription {
         this.prescriber = prescriber;
     }
 
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
-
     public String getMedication() {
         return medication;
     }
@@ -107,7 +101,7 @@ public class Prescription {
         return refills;
     }
 
-    public void setFrequency(String refills) {
+    public void setRefills(String refills) {
         this.refills = refills;
     }
 
@@ -135,12 +129,27 @@ public class Prescription {
         this.status = status;
     }
 
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public List<Medication> getMedicationList() {
+        return medicationList;
+    }
+
+    public void setMedicationList(List<Medication> medicationList) {
+        this.medicationList = medicationList;
+    }
+
     @Override
     public String toString() {
         return "Prescription{" +
                 "id=" + id +
                 ", prescriber='" + prescriber + '\'' +
-                ", patient='" + patient.getName() + '\'' +
                 ", medication='" + medication + '\'' +
                 ", dosage=" + dosage +
                 ", quantity=" + quantity +
@@ -148,7 +157,8 @@ public class Prescription {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", status=" + status +
-                ", user=" + patient +
+                ", patient=" + patient +
+                ", medicationList=" + medicationList +
                 '}';
     }
 }
