@@ -22,7 +22,7 @@ public class Patient {
     @Column
     private String phoneNumber;
     @Column(unique = true)
-    private String socialSecurity;
+    private Long socialSecurity;
     @Column(unique = true)
     private String emailAddress;
     @Column
@@ -38,7 +38,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(Long id, String name, String address, String phoneNumber, String socialSecurity, String emailAddress, String password, List<Prescription> prescriptionList) {
+    public Patient(Long id, String name, String address, String phoneNumber, Long socialSecurity, String emailAddress, String password, List<Prescription> prescriptionList) {
         this.id = id;
         this.name = name;
         Address = address;
@@ -89,11 +89,11 @@ public class Patient {
         this.emailAddress = emailAddress;
     }
 
-    public String getSocialSecurity() {
+    public Long getSocialSecurity() {
         return socialSecurity;
     }
 
-    public void setSocialSecurity(String socialSecurity) {
+    public void setSocialSecurity(Long socialSecurity) {
         this.socialSecurity = socialSecurity;
     }
 

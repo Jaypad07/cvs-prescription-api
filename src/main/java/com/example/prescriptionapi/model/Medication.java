@@ -25,7 +25,7 @@ public class Medication {
         private String sideEffects;
 
         //Many Medications can belong to Many Prescriptions
-        @ManyToMany(mappedBy = "medication_List")
+        @ManyToMany(mappedBy = "medicationList")
         private List<Prescription> prescriptionList;
 
 
