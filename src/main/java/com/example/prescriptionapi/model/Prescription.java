@@ -14,19 +14,23 @@ public class Prescription {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private String name;
+    private String prescriber;
+    @Column
+    private String patient;
+    @Column
+    private String medication;
     @Column
     private Double dosage;
     @Column
     private Long quantity;
     @Column
-    private Long refills;
+    private String refills;
     @Column
     private LocalDate startDate;
     @Column
     private LocalDate endDate;
     @Column
-    private boolean activePrescription;
+    private boolean status;
 
     @JsonIgnore
     @ManyToOne
@@ -36,15 +40,17 @@ public class Prescription {
     public Prescription() {
     }
 
-    public Prescription(Long id, String name, Double dosage, Long quantity, Long refills, LocalDate startDate, LocalDate endDate, boolean activePrescription) {
+    public Prescription(Long id, String prescriber, String patient, String medication, Double dosage, Long quantity, String refills, LocalDate startDate, LocalDate endDate, boolean status) {
         this.id = id;
-        this.name = name;
+        this.prescriber = prescriber;
+        this.patient = patient;
+        this.medication = medication;
         this.dosage = dosage;
         this.quantity = quantity;
         this.refills = refills;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.activePrescription = activePrescription;
+        this.status = status;
     }
 
     public Long getId() {
@@ -55,12 +61,28 @@ public class Prescription {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getPrescriber() {
+        return prescriber;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPrescriber(String prescriber) {
+        this.prescriber = prescriber;
+    }
+
+    public String getPatient() {
+        return patient;
+    }
+
+    public void setPatient(String patient) {
+        this.patient = patient;
+    }
+
+    public String getMedication() {
+        return medication;
+    }
+
+    public void setMedication(String medication) {
+        this.medication = medication;
     }
 
     public Double getDosage() {
@@ -79,11 +101,11 @@ public class Prescription {
         this.quantity = quantity;
     }
 
-    public Long getRefills() {
+    public String getRefills() {
         return refills;
     }
 
-    public void setRefills(Long refills) {
+    public void setFrequency(String refills) {
         this.refills = refills;
     }
 
@@ -103,12 +125,12 @@ public class Prescription {
         this.endDate = endDate;
     }
 
-    public boolean isActivePrescription() {
-        return activePrescription;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setActivePrescription(boolean activePrescription) {
-        this.activePrescription = activePrescription;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public User getUser() {
@@ -123,13 +145,15 @@ public class Prescription {
     public String toString() {
         return "Prescription{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", prescriber='" + prescriber + '\'' +
+                ", patient='" + patient + '\'' +
+                ", medication='" + medication + '\'' +
                 ", dosage=" + dosage +
                 ", quantity=" + quantity +
-                ", refills=" + refills +
+                ", refills='" + refills + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
-                ", activePrescription=" + activePrescription +
+                ", status=" + status +
                 ", user=" + user +
                 '}';
     }
