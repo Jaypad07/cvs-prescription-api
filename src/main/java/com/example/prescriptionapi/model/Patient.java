@@ -15,11 +15,13 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private String userName;
+    private String name;
     @Column
     private String Address;
     @Column
     private String phoneNumber;
+    @Column(unique = true)
+    private String socialSecurity;
     @Column(unique = true)
     private String emailAddress;
     @Column
@@ -35,13 +37,15 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(Long id, String userName, String address, String phoneNumber, String emailAddress, String password) {
+    public Patient(Long id, String name, String address, String phoneNumber, String socialSecurity, String emailAddress, String password, List<Prescription> prescriptionList) {
         this.id = id;
-        this.userName = userName;
-        this.Address = address;
+        this.name = name;
+        Address = address;
         this.phoneNumber = phoneNumber;
+        this.socialSecurity = socialSecurity;
         this.emailAddress = emailAddress;
         this.password = password;
+        this.prescriptionList = prescriptionList;
     }
 
     public Long getId() {
@@ -52,12 +56,12 @@ public class Patient {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String userName) {
+        this.name = userName;
     }
 
     public String getAddress() {
@@ -84,6 +88,14 @@ public class Patient {
         this.emailAddress = emailAddress;
     }
 
+    public String getSocialSecurity() {
+        return socialSecurity;
+    }
+
+    public void setSocialSecurity(String socialSecurity) {
+        this.socialSecurity = socialSecurity;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -104,9 +116,10 @@ public class Patient {
     public String toString() {
         return "Patient{" +
                 "id=" + id +
-                ", userName='" + userName + '\'' +
+                ", name='" + name + '\'' +
                 ", Address='" + Address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", socialSecurity='" + socialSecurity + '\'' +
                 ", emailAddress='" + emailAddress + '\'' +
                 ", password='" + password + '\'' +
                 ", prescriptionList=" + prescriptionList +

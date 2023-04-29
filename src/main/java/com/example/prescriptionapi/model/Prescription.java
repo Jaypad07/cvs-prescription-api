@@ -140,7 +140,7 @@ public class Prescription {
         return "Prescription{" +
                 "id=" + id +
                 ", prescriber='" + prescriber + '\'' +
-                ", patient='" + patient.getUserName() + '\'' +
+                ", patient='" + patient.getName() + '\'' +
                 ", medication='" + medication + '\'' +
                 ", dosage=" + dosage +
                 ", quantity=" + quantity +

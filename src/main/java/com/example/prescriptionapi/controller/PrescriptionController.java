@@ -35,9 +35,9 @@ public class PrescriptionController {
     }
 
     // http://localhost:9097/api/prescriptions
-//    @PostMapping(path = "api/prescriptions")
-//    public List<Prescription> createPrescriptions(@RequestBody Prescription prescriptionObject) {
-//        Optional<Prescription> prescription = prescriptionRepository.findById()
-//    }
+    @PostMapping(path = "api/prescriptions")
+    public List<Prescription> createPrescriptions(@RequestBody Prescription prescriptionObject) {
+        Optional<Prescription> prescription = prescriptionRepository.findByPatientIdAndMedication()
+    }
 
 }
