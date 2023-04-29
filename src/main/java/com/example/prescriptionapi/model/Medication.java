@@ -1,6 +1,7 @@
 package com.example.prescriptionapi.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "medications")
@@ -23,7 +24,8 @@ public class Medication {
         @Column
         private String sideEffects;
 
-
+        @ManyToMany
+        private List<Prescription> prescription;
 
 
         public Medication() {
