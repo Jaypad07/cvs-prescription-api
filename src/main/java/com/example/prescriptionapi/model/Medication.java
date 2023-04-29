@@ -24,8 +24,8 @@ public class Medication {
         @Column
         private String sideEffects;
 
-        @ManyToMany
-        private List<Prescription> prescription;
+        @ManyToMany(mappedBy = "medication_List")
+        private List<Prescription> prescriptionList;
 
 
         public Medication() {

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "prescriptions")
@@ -34,6 +35,10 @@ public class Prescription {
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
+
+    @ManyToMany
+    @JoinTable(name = "prescription_medication", joinColumns = @JoinColumn(name = "prescription_id"), inverseJoinColumns = @JoinColumn(name = "medication_id"))
+    private List<Medication> medicationList;
 
     public Prescription() {
     }
