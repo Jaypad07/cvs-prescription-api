@@ -1,13 +1,11 @@
 package com.example.prescriptionapi.controller;
 
 import com.example.prescriptionapi.exception.InformationExistException;
+import com.example.prescriptionapi.exception.InformationNotFoundException;
 import com.example.prescriptionapi.model.Patient;
 import com.example.prescriptionapi.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +18,11 @@ public class PatientController {
     @Autowired
     public void setPatientRepository(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
+    }
+
+    @GetMapping(path = "/patient")
+    public List<Patient> getAllPatients(){
+        return patientRepository.findAll();
     }
 
     @PostMapping(path = "/patient")
