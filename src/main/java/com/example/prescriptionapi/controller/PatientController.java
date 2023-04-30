@@ -50,7 +50,7 @@ public class PatientController {
 //    }
 
     // http://localhost:9097/api/patient/1
-    @PostMapping(path = "/patient/{patientId}")
+    @PutMapping(path = "/patient/{patientId}")
     public Patient updatePatient(@PathVariable Long patientId, @RequestBody Patient patientObject) {
         Patient patient = getPatient(patientId);
         if (patientObject.getSocialSecurity().equals(patient.getSocialSecurity())){
