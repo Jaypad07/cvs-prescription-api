@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Obinna",
+    "phoneNumber": "234-233-5663",
+    "socialSecurity": "343-23-3434",
+    "emailAddress": "ob23@yahoo.com",
+    "address": "1234 man st"
+  },
+  {
+    "name": "Kevin",
+    "phoneNumber": "343-263-9363",
+    "socialSecurity": "673-62-7573",
+    "emailAddress": "kev99@google.com",
+    "prescriptionList": [],
+    "address": "2334 Hudon dr"
+  }
+]
+
+
