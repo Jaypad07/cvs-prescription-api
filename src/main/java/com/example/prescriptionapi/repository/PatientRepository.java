@@ -7,8 +7,11 @@ import java.util.Optional;
 
 public interface PatientRepository extends JpaRepository<Patient, Long> {
 
-    // Find user by name
+    // Find patient by name
     Optional<Patient> findPatientByName(String name);
+
+    //Find patient by SSN
+    Optional<Patient> findBySocialSecurity(String ssn);
 
     // Find user by Social
     Long findPatientBySocialSecurity(Long SSN);

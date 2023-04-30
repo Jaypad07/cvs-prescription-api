@@ -21,8 +21,8 @@ public class Patient {
     private String Address;
     @Column
     private String phoneNumber;
-    @Column(unique = true)
-    private Long socialSecurity;
+    @Column(unique = true, nullable = false)
+    private String socialSecurity;
     @Column(unique = true)
     private String emailAddress;
     @Column
@@ -35,10 +35,18 @@ public class Patient {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Prescription> prescriptionList;
 
+    @PrePersist
+    @PreUpdate
+    private void validateSSN() {
+        if (!socialSecurity.matches("^\\d{3}-\\d{2}-\\d{4}$")){
+            throw new IllegalArgumentException("Invalid social security number");
+        }
+    }
+
     public Patient() {
     }
 
-    public Patient(Long id, String name, String address, String phoneNumber, Long socialSecurity, String emailAddress, String password, List<Prescription> prescriptionList) {
+    public Patient(Long id, String name, String address, String phoneNumber, String socialSecurity, String emailAddress, String password) {
         this.id = id;
         this.name = name;
         Address = address;
@@ -46,7 +54,6 @@ public class Patient {
         this.socialSecurity = socialSecurity;
         this.emailAddress = emailAddress;
         this.password = password;
-        this.prescriptionList = prescriptionList;
     }
 
     public Long getId() {
@@ -89,11 +96,11 @@ public class Patient {
         this.emailAddress = emailAddress;
     }
 
-    public Long getSocialSecurity() {
+    public String getSocialSecurity() {
         return socialSecurity;
     }
 
-    public void setSocialSecurity(Long socialSecurity) {
+    public void setSocialSecurity(String socialSecurity) {
         this.socialSecurity = socialSecurity;
     }
 
@@ -120,7 +127,7 @@ public class Patient {
                 ", name='" + name + '\'' +
                 ", Address='" + Address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", socialSecurity='" + socialSecurity + '\'' +
+                ", socialSecurity=" + socialSecurity +
                 ", emailAddress='" + emailAddress + '\'' +
                 ", password='" + password + '\'' +
                 ", prescriptionList=" + prescriptionList +
