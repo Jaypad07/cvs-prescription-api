@@ -34,10 +34,12 @@ public class PatientController {
         }else return patientRepository.save(patientObject);
     }
 
-    // http://localhost:9097/api/patient
-    @PostMapping(path = "/patient/{name}")
+    // http://localhost:9097/api/patient/Jay
+    @GetMapping(path = "/patient/{name}")
     public List<Patient> findPatientsByName(@PathVariable String name) {
         return patientRepository.findPatientByName(name);
     }
+
+
 
 }
