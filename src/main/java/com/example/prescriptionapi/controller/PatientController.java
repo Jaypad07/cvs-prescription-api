@@ -24,7 +24,7 @@ public class PatientController {
 
     @PostMapping(path = "/patient")
     public Patient createPatient(@RequestBody Patient patientObject) {
-        Optional<Patient> patient = patientRepository.findPatientByName(patientObject.getName());
+        Optional<Patient> patient = patientRepository.findPatientBySocialSecurity(patientObject.getSocialSecurity());
         if (patient.isPresent()) {
             throw new InformationExistException("Patient with id " + patientObject.getId() + " already exists");
         }else return patientRepository.save(patientObject);
