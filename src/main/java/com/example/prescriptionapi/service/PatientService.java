@@ -18,4 +18,10 @@ public class PatientService {
     public void setPatientRepository(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
     }
+
+    public List<Patient> getAllPatients() {
+        return patientRepository.findAll();
+    }
 }
+
+
