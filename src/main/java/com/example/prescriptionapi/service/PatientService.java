@@ -53,7 +53,11 @@ public class PatientService {
         return patientRepository.save(patient);
     }
 
-
+    public Patient deletePatient(Long patientId) {
+        Patient patient = getPatient(patientId);
+        patientRepository.deleteById(patientId);
+        return patient;
+    }
 }
 
 

@@ -45,12 +45,9 @@ public class PatientController {
         return patientService.updatePatient(patientId, patientObject);
     }
 
-//
-//    // http://localhost:9097/api/patient/1
-//    @DeleteMapping(path = "/patient/{patientId}")
-//    public Patient deletePatient(@PathVariable Long patientId) {
-//        Patient patient = getPatient(patientId);
-//        patientRepository.deleteById(patientId);
-//        return patient;
-//    }
+    // http://localhost:9097/api/patient/1
+    @DeleteMapping(path = "/patient/{patientId}")
+    public Patient deletePatient(@PathVariable Long patientId) {
+        return patientService.deletePatient(patientId);
+    }
 }
