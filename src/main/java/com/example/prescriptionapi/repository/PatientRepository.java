@@ -3,12 +3,13 @@ package com.example.prescriptionapi.repository;
 import com.example.prescriptionapi.model.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     // Find patient by name
-    Optional<Patient> findPatientByName(String name);
+    List<Patient> findPatientByName(String name);
 
     //Find patient by SSN
     Optional<Patient> findPatientBySocialSecurity(String ssn);
