@@ -37,7 +37,7 @@ public class PatientController {
     // http://localhost:9097/api/patient/Jay
     @GetMapping(path = "/patient/{name}")
     public List<Patient> findPatientsByName(@PathVariable String name) {
-        return patientRepository.findPatientByName(name);
+        return patientRepository.findPatientByNameContainingIgnoreCase(name);
     }
 
 
