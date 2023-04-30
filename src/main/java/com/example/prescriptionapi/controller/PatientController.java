@@ -54,15 +54,23 @@ public class PatientController {
     @PutMapping(path = "/patient/{patientId}")
     public Patient updatePatient(@PathVariable Long patientId, @RequestBody Patient patientObject) {
         Patient patient = getPatient(patientId);
-        if (patientObject.getSocialSecurity().equals(patient.getSocialSecurity())){
-            throw new InformationExistException("Patient with socialSecurity " + patient.getSocialSecurity() + " already exists");
+        if (patientObject.getName().equals(patient.getName())){
+            throw new InformationExistException("Patient with name " + patient.getName() + " already exists");
         }else {
             patient.setName(patientObject.getName());
             patient.setAddress(patientObject.getAddress());
-            patient.setEmailAddress(patient.getEmailAddress());
-            patient.setPhoneNumber(patient.getEmailAddress());
+            patient.setEmailAddress(patientObject.getEmailAddress());
+            patient.setPhoneNumber(patientObject.getEmailAddress());
             patient.setSocialSecurity(patientObject.getSocialSecurity());
             return patientRepository.save(patientObject);
         }
+    }
+
+    // http://localhost:9097/api/patient/1
+    @DeleteMapping(path = "/patient/{patientId")
+    public Patient deletePatient(Long patientId) {
+        Patient patient = getPatient(patientId);
+        patientRepository.deleteById(patientId);
+        return patient;
     }
 }
