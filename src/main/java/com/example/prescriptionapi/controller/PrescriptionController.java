@@ -34,6 +34,9 @@ public class PrescriptionController {
         return prescriptionService.createPrescription(prescriptionObject);
     }
 
-
+    @GetMapping(path = "/prescriptions")
+    public List<Prescription> getAllPrescriptions() {
+        return prescriptionService.getAllPrescriptions();
+    }
 
 }

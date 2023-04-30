@@ -30,6 +30,12 @@ public class PrescriptionService {
         }else {
             return prescriptionRepository.save(prescriptionObject);
         }
-
     }
+
+    public List<Prescription> getAllPrescriptions() {
+        return prescriptionRepository.findAll();
+    }
+
+
+
 }
