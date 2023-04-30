@@ -1,7 +1,6 @@
 package com.example.prescriptionapi.controller;
 
 import com.example.prescriptionapi.exception.InformationExistException;
-import com.example.prescriptionapi.exception.InformationNotFoundException;
 import com.example.prescriptionapi.model.Patient;
 import com.example.prescriptionapi.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
