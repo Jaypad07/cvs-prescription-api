@@ -3,7 +3,15 @@ package com.example.prescriptionapi.repository;
 import com.example.prescriptionapi.model.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<Patient, Long> {
+import java.util.Optional;
+
+public interface PatientRepository extends JpaRepository<Patient, Long> {
+
+    // Find user by name
+    Optional<Patient> findPatientByName(String name);
+
+    // Find user by Social
+    Long findPatientBySocialSecurity(Long SSN);
 
     // Register new user
     boolean existsByEmailAddress(String emailAddress);
