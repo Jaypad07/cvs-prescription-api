@@ -43,10 +43,10 @@ public class PatientController {
         }else return patient.get();
     }
 
-    // http://localhost:9097/api/patient/Jay
-    @GetMapping(path = "/patient/{name}")
-    public List<Patient> findPatientsByName(@PathVariable String name) {
-        return patientRepository.findPatientByNameContainingIgnoreCase(name);
-    }
+//    // http://localhost:9097/api/patient/Jay
+//    @GetMapping(path = "/patient/{name}")
+//    public List<Patient> findPatientsByName(@PathVariable String name) {
+//        return patientRepository.findPatientByNameContainingIgnoreCase(name);
+//    }
 
 }
