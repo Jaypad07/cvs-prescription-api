@@ -42,6 +42,18 @@ public class PatientService {
         }
     }
 
+    //Patient cannot have social edited. It will replace
+    public Patient updatePatient(Long patientId, Patient patientObject) {
+        Patient patient = getPatient(patientId);
+        patient.setName(patientObject.getName());
+        patient.setAddress(patientObject.getAddress());
+        patient.setPhoneNumber(patientObject.getPhoneNumber());
+        patient.setEmailAddress(patientObject.getEmailAddress());
+        patient.setSocialSecurity(patient.getSocialSecurity());
+        return patientRepository.save(patient);
+    }
+
+
 }
 
 

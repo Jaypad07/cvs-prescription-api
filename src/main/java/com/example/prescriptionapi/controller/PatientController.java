@@ -38,18 +38,13 @@ public class PatientController {
     public Patient createPatient(@RequestBody Patient patientObject) {
         return patientService.createPatient(patientObject);
     }
-//
-//    // http://localhost:9097/api/patient/1
-//    @PutMapping(path = "/patient/{patientId}")
-//    public Patient updatePatient(@PathVariable Long patientId, @RequestBody Patient patientObject) {
-//        Patient patient = getPatient(patientId);
-//        patient.setName(patientObject.getName());
-//        patient.setAddress(patientObject.getAddress());
-//        patient.setPhoneNumber(patientObject.getPhoneNumber());
-//        patient.setEmailAddress(patientObject.getEmailAddress());
-//        patient.setSocialSecurity(patient.getSocialSecurity());
-//        return patientRepository.save(patient);
-//    }
+
+    // http://localhost:9097/api/patient/1
+    @PutMapping(path = "/patient/{patientId}")
+    public Patient updatePatient(@PathVariable Long patientId, @RequestBody Patient patientObject) {
+        return patientService.updatePatient(patientId, patientObject);
+    }
+
 //
 //    // http://localhost:9097/api/patient/1
 //    @DeleteMapping(path = "/patient/{patientId}")

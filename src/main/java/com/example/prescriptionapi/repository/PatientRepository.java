@@ -8,9 +8,6 @@ import java.util.Optional;
 
 public interface PatientRepository extends JpaRepository<Patient, Long> {
 
-//    // Find patient by name
-//    List<Patient> findPatientByNameContainingIgnoreCase(String name);
-
     //Find patient by SSN
     Optional<Patient> findPatientBySocialSecurity(String ssn);
 
