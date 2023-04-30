@@ -20,9 +20,9 @@ public class Patient {
     private String Address;
     @Column
     private String phoneNumber;
-    @Column(unique = true, nullable = false)
-    private String socialSecurity;
     @Column(unique = true)
+    private String socialSecurity;
+    @Column
     private String emailAddress;
     @Column
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)  // Only allowed to write to the field not retrieve the field. So others won't have access to user password.
@@ -37,8 +37,10 @@ public class Patient {
     @PrePersist
     @PreUpdate
     private void validateSSN() {
-        if (!socialSecurity.matches("^\\d{3}-\\d{2}-\\d{4}$")){
-            throw new IllegalArgumentException("Invalid social security number");
+        if (socialSecurity != null) {
+            if (!socialSecurity.matches("^\\d{3}-\\d{2}-\\d{4}$")){
+                throw new IllegalArgumentException("Invalid social security number");
+            }
         }
     }
 

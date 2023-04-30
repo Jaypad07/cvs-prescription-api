@@ -26,6 +26,15 @@ public class PatientController {
         return patientRepository.findAll();
     }
 
+    // http://localhost:9097/api/patient/1
+    @GetMapping(path = "/patient/{patientId}")
+    public Patient getPatient(@PathVariable Long patientId)    {
+        Optional<Patient> patient = patientRepository.findById(patientId);
+        if (patient.isEmpty()) {
+            throw new InformationNotFoundException("Patient with id " + patientId + " does not exist.");
+        }else return patient.get();
+    }
+
     // http://localhost:9097/api/patient
     @PostMapping(path = "/patient")
     public Patient createPatient(@RequestBody Patient patientObject) {
@@ -35,14 +44,7 @@ public class PatientController {
         }else return patientRepository.save(patientObject);
     }
 
-    // http://localhost:9097/api/patient/1
-    @GetMapping(path = "/patient/{patientId}")
-    public Patient getPatient(@PathVariable Long patientId)    {
-        Optional<Patient> patient = patientRepository.findById(patientId);
-        if (patient.isEmpty()) {
-            throw new InformationNotFoundException("Patient with id " + patientId + " does not exist.");
-        }else return patient.get();
-    }
+
 
 //    // http://localhost:9097/api/patient/Jay
 //    @GetMapping(path = "/patient/{name}")
@@ -54,21 +56,17 @@ public class PatientController {
     @PutMapping(path = "/patient/{patientId}")
     public Patient updatePatient(@PathVariable Long patientId, @RequestBody Patient patientObject) {
         Patient patient = getPatient(patientId);
-        if (patientObject.getName().equals(patient.getName())){
-            throw new InformationExistException("Patient with name " + patient.getName() + " already exists");
-        }else {
-            patient.setName(patientObject.getName());
-            patient.setAddress(patientObject.getAddress());
-            patient.setEmailAddress(patientObject.getEmailAddress());
-            patient.setPhoneNumber(patientObject.getEmailAddress());
-            patient.setSocialSecurity(patientObject.getSocialSecurity());
-            return patientRepository.save(patientObject);
-        }
+        patient.setName(patientObject.getName());
+        patient.setAddress(patientObject.getAddress());
+        patient.setPhoneNumber(patientObject.getPhoneNumber());
+        patient.setEmailAddress(patientObject.getEmailAddress());
+        patient.setSocialSecurity(patient.getSocialSecurity());
+        return patientRepository.save(patient);
     }
 
     // http://localhost:9097/api/patient/1
-    @DeleteMapping(path = "/patient/{patientId")
-    public Patient deletePatient(Long patientId) {
+    @DeleteMapping(path = "/patient/{patientId}")
+    public Patient deletePatient(@PathVariable Long patientId) {
         Patient patient = getPatient(patientId);
         patientRepository.deleteById(patientId);
         return patient;
