@@ -14,7 +14,6 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     //Find patient by SSN
     Optional<Patient> findPatientBySocialSecurity(String ssn);
 
-
     // Register new user
     boolean existsByEmailAddress(String emailAddress);
 

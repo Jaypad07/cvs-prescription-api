@@ -35,11 +35,11 @@ public class PatientController {
     }
 
     // http://localhost:9097/api/patient/1
-    @GetMapping(path = "/patient/{id}")
-    public Patient findPatientId(@PathVariable Long id)    {
-        Optional<Patient> patient = patientRepository.findById(id);
+    @GetMapping(path = "/patient/{patientId}")
+    public Patient getPatient(@PathVariable Long patientId)    {
+        Optional<Patient> patient = patientRepository.findById(patientId);
         if (patient.isPresent()) {
-            throw new InformationExistException("Patient with id " + id + " already exists");
+            throw new InformationExistException("Patient with id " + patientId + " already exists");
         }else return patient.get();
     }
 
@@ -49,4 +49,19 @@ public class PatientController {
 //        return patientRepository.findPatientByNameContainingIgnoreCase(name);
 //    }
 
+    // http://localhost:9097/api/patient/1
+    @PostMapping(path = "/patient/{patientId}")
+    public Patient updatePatient(@PathVariable Long patientId, @RequestBody Patient patientObject) {
+        Patient patient = getPatient(patientId);
+        if (patientObject.getSocialSecurity().equals(patient.getSocialSecurity())){
+            throw new InformationExistException("Patient with socialSecurity " + patient.getSocialSecurity() + " already exists");
+        }else {
+            patient.setName(patientObject.getName());
+            patient.setAddress(patientObject.getAddress());
+            patient.setEmailAddress(patient.getEmailAddress());
+            patient.setPhoneNumber(patient.getEmailAddress());
+            patient.setSocialSecurity(patientObject.getSocialSecurity());
+            return patientRepository.save(patientObject);
+        }
+    }
 }
