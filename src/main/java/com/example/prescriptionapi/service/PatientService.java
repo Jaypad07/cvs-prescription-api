@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PatientService {
@@ -21,6 +22,15 @@ public class PatientService {
 
     public List<Patient> getAllPatients() {
         return patientRepository.findAll();
+    }
+
+    public Patient getPatient(Long patientId) {
+        Optional<Patient> patient = patientRepository.findById(patientId);
+        if (patient.isPresent()) {
+            return patient.get();
+        } else {
+            throw new InformationNotFoundException("Patient with id " + patientId + " does not exist.");
+        }
     }
 }
 
