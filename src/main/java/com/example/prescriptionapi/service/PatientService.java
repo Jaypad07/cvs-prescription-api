@@ -32,6 +32,16 @@ public class PatientService {
             throw new InformationNotFoundException("Patient with id " + patientId + " does not exist.");
         }
     }
+
+    public Patient createPatient(Patient patientObject) {
+        Optional<Patient> patient = patientRepository.findPatientBySocialSecurity(patientObject.getSocialSecurity());
+        if (patient.isPresent()) {
+            throw new InformationExistException("Patient with socialSecurity " + patientObject.getSocialSecurity() + " already exists");
+        } else {
+            return patientRepository.save(patientObject);
+        }
+    }
+
 }
 
 

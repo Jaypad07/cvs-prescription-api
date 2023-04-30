@@ -32,15 +32,12 @@ public class PatientController {
     public Patient getPatient(@PathVariable Long patientId) {
         return patientService.getPatient(patientId);
     }
-//
-//    // http://localhost:9097/api/patient
-//    @PostMapping(path = "/patient")
-//    public Patient createPatient(@RequestBody Patient patientObject) {
-//        Optional<Patient> patient = patientRepository.findPatientBySocialSecurity(patientObject.getSocialSecurity());
-//        if (patient.isPresent()) {
-//            throw new InformationExistException("Patient with socialSecurity " + patientObject.getSocialSecurity() + " already exists");
-//        }else return patientRepository.save(patientObject);
-//    }
+
+    // http://localhost:9097/api/patient
+    @PostMapping(path = "/patient")
+    public Patient createPatient(@RequestBody Patient patientObject) {
+        return patientService.createPatient(patientObject);
+    }
 //
 //    // http://localhost:9097/api/patient/1
 //    @PutMapping(path = "/patient/{patientId}")
