@@ -36,7 +36,7 @@ public class PatientService {
     public Patient createPatient(Patient patientObject) {
         Optional<Patient> patient = patientRepository.findPatientBySocialSecurity(patientObject.getSocialSecurity());
         if (patient.isPresent()) {
-            throw new InformationExistException("Patient with socialSecurity " + patientObject.getSocialSecurity() + " already exists");
+            throw new InformationExistException("Patient with socialSecurity " + patientObject.getSocialSecurity() + " already exists.");
         } else {
             return patientRepository.save(patientObject);
         }

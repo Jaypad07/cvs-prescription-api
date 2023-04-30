@@ -2,6 +2,7 @@ package com.example.prescriptionapi.controller;
 
 import com.example.prescriptionapi.model.Prescription;
 import com.example.prescriptionapi.repository.PrescriptionRepository;
+import com.example.prescriptionapi.service.PrescriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,12 +13,12 @@ import java.util.Optional;
 @RequestMapping(path = "/api")
 public class PrescriptionController {
 
-////    private PrescriptionService prescriptionService;
-//
-//    @Autowired
-//    public void setPrescriptionService(PrescriptionService prescriptionService) {
-//
-//    }
+    private PrescriptionService prescriptionService;
+
+    @Autowired
+    public void setPrescriptionService(PrescriptionService prescriptionService) {
+
+    }
 
     private PrescriptionRepository prescriptionRepository;
 
@@ -26,16 +27,13 @@ public class PrescriptionController {
         this.prescriptionRepository = prescriptionRepository;
     }
 
-    // http://localhost:9097/api/hello-world
-    @GetMapping(path = "/hello-world")
-    public String helloWorld() {
-        return "Hello World";
-    }
 
     // http://localhost:9097/api/prescriptions
-//    @PostMapping(path = "/patient/prescriptions")
-//    public List<Prescription> createPrescriptions(@RequestBody Prescription prescriptionObject) {
-//        Optional<Prescription> prescription = prescriptionRepository.findByPatientSocialSecurityAndMedication(, prescriptionObject.getMedication());
-//    }
+    @PostMapping(path = "/patient/prescriptions")
+    public Prescription createPrescriptions(@RequestBody Prescription prescriptionObject) {
+        return prescriptionService.createPrescription(prescriptionObject);
+    }
+
+
 
 }
