@@ -30,8 +30,17 @@ public class PatientController {
     public Patient createPatient(@RequestBody Patient patientObject) {
         Optional<Patient> patient = patientRepository.findPatientBySocialSecurity(patientObject.getSocialSecurity());
         if (patient.isPresent()) {
-            throw new InformationExistException("Patient with id " + patientObject.getId() + " already exists");
+            throw new InformationExistException("Patient with socialSecurity " + patientObject.getSocialSecurity() + " already exists");
         }else return patientRepository.save(patientObject);
+    }
+
+    // http://localhost:9097/api/patient/1
+    @GetMapping(path = "/patient/{id}")
+    public Patient findPatientId(@PathVariable Long id)    {
+        Optional<Patient> patient = patientRepository.findById(id);
+        if (patient.isPresent()) {
+            throw new InformationExistException("Patient with id " + id + " already exists");
+        }else return patient.get();
     }
 
     // http://localhost:9097/api/patient/Jay
@@ -39,7 +48,5 @@ public class PatientController {
     public List<Patient> findPatientsByName(@PathVariable String name) {
         return patientRepository.findPatientByNameContainingIgnoreCase(name);
     }
-
-
 
 }
