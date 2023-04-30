@@ -44,14 +44,6 @@ public class PatientController {
         }else return patientRepository.save(patientObject);
     }
 
-
-
-//    // http://localhost:9097/api/patient/Jay
-//    @GetMapping(path = "/patient/{name}")
-//    public List<Patient> findPatientsByName(@PathVariable String name) {
-//        return patientRepository.findPatientByNameContainingIgnoreCase(name);
-//    }
-
     // http://localhost:9097/api/patient/1
     @PutMapping(path = "/patient/{patientId}")
     public Patient updatePatient(@PathVariable Long patientId, @RequestBody Patient patientObject) {
