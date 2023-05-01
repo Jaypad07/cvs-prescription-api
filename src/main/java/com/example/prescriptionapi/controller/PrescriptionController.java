@@ -42,4 +42,10 @@ public class PrescriptionController {
         return prescriptionService.updatePrescription(id, prescriptionObject);
     }
 
+    // http://localhost:9097/api/prescription/1
+    @DeleteMapping("prescription/{id}")
+    public Prescription DeletePrescription(@PathVariable Long id) {
+        return prescriptionService.deletePrescription(id);
+    }
+
 }

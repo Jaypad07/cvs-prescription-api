@@ -65,5 +65,9 @@ public class PrescriptionService {
             return prescriptionRepository.save(existingPrescription);
         }
 
-
+    public Prescription deletePrescription(Long prescriptionId) {
+        Prescription prescription = getPrescription(prescriptionId);
+        prescriptionRepository.deleteById(prescriptionId);
+        return prescription;
+    }
 }
