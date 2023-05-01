@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/api/patient/")
+@RequestMapping(path = "/api")
 public class PrescriptionController {
 
     private PrescriptionService prescriptionService;
@@ -19,11 +18,11 @@ public class PrescriptionController {
         this.prescriptionService = prescriptionService;
     }
 
-    // http://localhost:9097/api/prescription
-    @PostMapping(path = "/patient/prescription")
-    public Prescription createPrescriptions(@RequestBody Prescription prescriptionObject) {
-        return prescriptionService.createPrescription(prescriptionObject);
-    }
+    // http://localhost:9097/api/prescription/12/lipson
+//    @PostMapping(path = "/prescription/{id}/medications")
+//    public Prescription createPrescription(@PathVariable Long id, @RequestBody Medication medication) {
+//        return prescriptionService.createPrescription(id, medication);
+//    }
 
     // http://localhost:9097/api/prescription
     @GetMapping(path = "/prescription")

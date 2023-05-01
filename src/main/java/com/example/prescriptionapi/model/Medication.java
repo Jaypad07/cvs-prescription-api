@@ -1,5 +1,7 @@
 package com.example.prescriptionapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class Medication {
         private String sideEffects;
 
         //Many Medications can belong to Many Prescriptions
+        @JsonIgnore
         @ManyToMany(mappedBy = "medicationList")
         private List<Prescription> prescriptionList;
 

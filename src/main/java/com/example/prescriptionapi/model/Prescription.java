@@ -1,5 +1,6 @@
 package com.example.prescriptionapi.model;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -32,13 +33,14 @@ public class Prescription {
     private boolean status;
 
     //Many prescriptions can belong to one patient
-    @JsonIgnore
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
     //Many Prescriptions can have Many Medications
     @ManyToMany
+    @JsonIgnore
     @JoinTable(name = "prescription_medication", joinColumns = @JoinColumn(name = "prescription_id"), inverseJoinColumns = @JoinColumn(name = "medication_id"))
     private List<Medication> medicationList;
 

@@ -3,7 +3,9 @@ package com.example.prescriptionapi.service;
 import com.example.prescriptionapi.exception.InformationExistException;
 import com.example.prescriptionapi.exception.InformationNotFoundException;
 import com.example.prescriptionapi.model.Patient;
+import com.example.prescriptionapi.model.Prescription;
 import com.example.prescriptionapi.repository.PatientRepository;
+import com.example.prescriptionapi.repository.PrescriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,13 @@ import java.util.Optional;
 public class PatientService {
 
     private PatientRepository patientRepository;
+
+    private PrescriptionRepository prescriptionRepository;
+
+    @Autowired
+    public void setPrescriptionRepository(PrescriptionRepository prescriptionRepository) {
+        this.prescriptionRepository = prescriptionRepository;
+    }
 
     @Autowired
     public void setPatientRepository(PatientRepository patientRepository) {
@@ -39,6 +48,25 @@ public class PatientService {
             throw new InformationExistException("Patient with socialSecurity " + patientObject.getSocialSecurity() + " already exists.");
         } else {
             return patientRepository.save(patientObject);
+        }
+    }
+
+    public Prescription createPrescriptionForPatient(Long patientId, Prescription prescriptionObject) {
+        Optional<Patient> patient = patientRepository.findById(patientId);
+        if (patient.isPresent()) {
+            Optional<Prescription> prescription = prescriptionRepository.findByMedication(prescriptionObject.getMedication());
+
+//            if (patient.get().getPrescriptionList().contains(prescriptionObject)) {
+            if (prescription.isPresent()) {
+                throw new InformationExistException("Patient already has that prescription: " + patient.get().getPrescriptionList());
+            } else {
+//                patient.get().getPrescriptionList().add(prescriptionObject);
+                prescriptionObject.setPatient(patient.get());
+//            prescriptionObject.getMedicationList().add(medication);
+                return prescriptionRepository.save(prescriptionObject);
+            }
+        }else {
+            throw new InformationNotFoundException("Patient not found");
         }
     }
 

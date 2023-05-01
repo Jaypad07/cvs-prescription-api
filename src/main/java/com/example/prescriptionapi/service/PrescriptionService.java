@@ -1,9 +1,8 @@
 package com.example.prescriptionapi.service;
 
-
-import com.example.prescriptionapi.exception.InformationExistException;
 import com.example.prescriptionapi.exception.InformationNotFoundException;
 import com.example.prescriptionapi.model.Prescription;
+import com.example.prescriptionapi.repository.PatientRepository;
 import com.example.prescriptionapi.repository.PrescriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,21 +13,31 @@ import java.util.Optional;
 @Service
 public class PrescriptionService {
 
-    PrescriptionRepository prescriptionRepository;
+    private PrescriptionRepository prescriptionRepository;
+
+    private PatientRepository patientRepository;
+
+    @Autowired
+    public void setPatientRepository(PatientRepository patientRepository) {
+        this.patientRepository = patientRepository;
+    }
 
     @Autowired
     public void setPrescriptionRepository(PrescriptionRepository prescriptionRepository) {
         this.prescriptionRepository = prescriptionRepository;
     }
 
-    public Prescription createPrescription(Prescription prescriptionObject) {
-        Optional<Prescription> prescription = prescriptionRepository.findById(prescriptionObject.getId());
-        if (prescription.isPresent()) {
-            throw new InformationExistException("Prescription with id number " + prescriptionObject.getId() + " already exists.");
-        }else {
-            return prescriptionRepository.save(prescriptionObject);
-        }
-    }
+//    public Prescription createPrescription(Long patientId, Prescription prescriptionObject, Medication medication) {
+//        Patient patient = patientRepository.findById(patientId).get();
+//        if (patient.getPrescriptionList().contains(prescriptionObject)) {
+//            throw new InformationExistException("Patient already has a prescription with medication: " + medication.getName());
+//        } else {
+//            patient.getPrescriptionList().add(prescriptionObject);
+////            prescriptionObject.getMedicationList().add(medication);
+//            return prescriptionRepository.save(prescriptionObject);
+//        }
+//    }
+
 
     public List<Prescription> getAllPrescriptions() {
         return prescriptionRepository.findAll();
