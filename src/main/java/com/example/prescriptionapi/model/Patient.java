@@ -17,7 +17,7 @@ public class Patient {
     @Column
     private String name;
     @Column
-    private String Address;
+    private String address;
     @Column
     private String phoneNumber;
     @Column(unique = true)
@@ -50,7 +50,7 @@ public class Patient {
     public Patient(Long id, String name, String address, String phoneNumber, String socialSecurity, String emailAddress, String password) {
         this.id = id;
         this.name = name;
-        Address = address;
+        this.address = address;
         this.phoneNumber = phoneNumber;
         this.socialSecurity = socialSecurity;
         this.emailAddress = emailAddress;
@@ -74,11 +74,11 @@ public class Patient {
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        address = address;
     }
 
     public String getPhoneNumber() {
@@ -126,7 +126,7 @@ public class Patient {
         return "Patient{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", Address='" + Address + '\'' +
+                ", Address='" + address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", socialSecurity=" + socialSecurity +
                 ", emailAddress='" + emailAddress + '\'' +

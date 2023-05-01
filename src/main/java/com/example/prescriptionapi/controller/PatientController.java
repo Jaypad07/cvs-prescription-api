@@ -39,7 +39,7 @@ public class PatientController {
     }
 
     @PostMapping(path = "/login")
-    public ResponseEntity<?> loginAstronomer(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> loginPatient(@RequestBody LoginRequest loginRequest) {
         return patientService.loginUser(loginRequest);
     }
 
