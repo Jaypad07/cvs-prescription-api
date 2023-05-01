@@ -1,4 +1,0 @@
- Find by Name
-if (!socialSecurity.matches("^\\d{3}-\\d{2}-\\d{4}$")){
-    throw new IllegalArgumentException("Invalid social security number");
-}
