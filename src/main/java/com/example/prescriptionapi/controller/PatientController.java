@@ -2,25 +2,27 @@ package com.example.prescriptionapi.controller;
 
 import com.example.prescriptionapi.model.Patient;
 import com.example.prescriptionapi.model.Prescription;
+import com.example.prescriptionapi.model.request.LoginRequest;
 import com.example.prescriptionapi.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping(path = "/api/auth")
 public class PatientController {
-   private PatientService patientService;
+    private PatientService patientService;
 
-   @Autowired
-   public void setPatientService(PatientService patientService) {
-       this.patientService = patientService;
-   }
+    @Autowired
+    public void setPatientService(PatientService patientService) {
+        this.patientService = patientService;
+    }
 
     // http://localhost:9097/api/patient
     @GetMapping(path = "/patient")
-    public List<Patient> getAllPatients(){
+    public List<Patient> getAllPatients() {
         return patientService.getAllPatients();
     }
 
@@ -31,15 +33,20 @@ public class PatientController {
     }
 
     // http://localhost:9097/api/patient
-    @PostMapping(path = "/patient")
+    @PostMapping(path = "/register")
     public Patient createPatient(@RequestBody Patient patientObject) {
         return patientService.createPatient(patientObject);
     }
 
+    @PostMapping(path = "/login")
+    public ResponseEntity<?> loginAstronomer(@RequestBody LoginRequest loginRequest) {
+        return patientService.loginUser(loginRequest);
+    }
+
     // http://localhost:9097/api/patient/1/prescriptions
     @PostMapping(path = "/patient/{patientId}/prescriptions")
-    public Prescription createPrescriptionForPatient(@PathVariable Long patientId, @RequestBody Prescription prescriptionObject){
-       return patientService.createPrescriptionForPatient(patientId, prescriptionObject);
+    public Prescription createPrescriptionForPatient(@PathVariable Long patientId, @RequestBody Prescription prescriptionObject) {
+        return patientService.createPrescriptionForPatient(patientId, prescriptionObject);
     }
 
     // http://localhost:9097/api/patient/1
