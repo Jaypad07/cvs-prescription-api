@@ -44,13 +44,13 @@ public class PatientService {
 
     //Patient cannot have social edited. It will replace
     public Patient updatePatient(Long patientId, Patient patientObject) {
-        Patient patient = getPatient(patientId);
-        patient.setName(patientObject.getName());
-        patient.setAddress(patientObject.getAddress());
-        patient.setPhoneNumber(patientObject.getPhoneNumber());
-        patient.setEmailAddress(patientObject.getEmailAddress());
-        patient.setSocialSecurity(patient.getSocialSecurity());
-        return patientRepository.save(patient);
+        Patient updatedPatient = getPatient(patientId);
+        updatedPatient.setName(patientObject.getName());
+        updatedPatient.setAddress(patientObject.getAddress());
+        updatedPatient.setPhoneNumber(patientObject.getPhoneNumber());
+        updatedPatient.setEmailAddress(patientObject.getEmailAddress());
+        updatedPatient.setSocialSecurity(updatedPatient.getSocialSecurity());
+        return patientRepository.save(updatedPatient);
     }
 
     public Patient deletePatient(Long patientId) {
