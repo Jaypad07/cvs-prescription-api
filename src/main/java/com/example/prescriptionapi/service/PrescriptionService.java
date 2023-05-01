@@ -2,6 +2,8 @@ package com.example.prescriptionapi.service;
 
 
 import com.example.prescriptionapi.exception.InformationExistException;
+import com.example.prescriptionapi.exception.InformationNotFoundException;
+import com.example.prescriptionapi.model.Patient;
 import com.example.prescriptionapi.model.Prescription;
 import com.example.prescriptionapi.repository.PrescriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,15 @@ public class PrescriptionService {
 
     public List<Prescription> getAllPrescriptions() {
         return prescriptionRepository.findAll();
+    }
+
+    public Prescription getPrescription(Long prescriptionId) {
+        Optional<Prescription> prescription = prescriptionRepository.findById(prescriptionId);
+        if (prescription.isPresent()) {
+            return prescription.get();
+        } else {
+            throw new InformationNotFoundException("Prescription with id " + prescriptionId + " does not exist.");
+        }
     }
 
 

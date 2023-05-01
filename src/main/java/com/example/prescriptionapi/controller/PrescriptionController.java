@@ -34,9 +34,19 @@ public class PrescriptionController {
         return prescriptionService.createPrescription(prescriptionObject);
     }
 
+    // http://localhost:9097/api/prescriptions
     @GetMapping(path = "/prescriptions")
     public List<Prescription> getAllPrescriptions() {
         return prescriptionService.getAllPrescriptions();
     }
+
+    // http://localhost:9097/api/prescriptions/1
+    @GetMapping("/prescriptions/{id}")
+    public Prescription getPrescriptionById(@PathVariable Long id) {
+        return prescriptionService.getPrescription(id);
+    }
+
+
+
 
 }
